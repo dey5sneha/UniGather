@@ -12,7 +12,7 @@ const io = new Server(server, {
 const port = 8000;
 
 
-
+//Socket io Connection
 io.on('connection', (socket) => {
     console.log('A user connected');
   
@@ -22,12 +22,14 @@ io.on('connection', (socket) => {
       socket.emit('join:room', details);
     })
   
-    // Handle disconnection
+    // Handling disconnection
     socket.on('disconnect', () => {
       console.log('User disconnected');
     });
   });
   
+
+  //Handling the https requests using express
   app.get('/',(_, res)=>{
     console.log("Server");
     res.send("Hi form Server");

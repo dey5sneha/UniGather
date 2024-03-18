@@ -12,17 +12,18 @@ const LandingPage = () => {
         setEmail(e.target.value);
         
     };
-
     const handleChangeCode = (e) => {
         setCode(e.target.value);
     };
 
+    //Sending the details to the server
     const handleSubmitForm = (e) => {
         e.preventDefault();
         const details = { email, code };
         socket.emit("join:call", details);
     };
 
+    //to redirect the user to the room
     const handleJoinRoom = useCallback((data) => {
         navigate(`/room/${data.code}`);
     }, [navigate]);
