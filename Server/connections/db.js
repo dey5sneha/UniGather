@@ -1,21 +1,18 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
+require('dotenv').config();
 
-const mongooseURI =process.env.DB_URI;
+const mongooseURI = process.env.DB_URI || "mongodb://127.0.0.1:27017/UniGatherDB";
+// console.log(mongooseURI);
 
-// Connection to MongoDB
 const connectToMongo = () => {
-    mongoose.connect(DB_URI, {
-            useNewUrlParser: true,
-            useUnifiedTopology: true
-        })
-        .then(() => {
-            console.log("Connected to MongoDB");
-        })
-        .catch((error) => {
-            // Logging the error
-            console.error("Error in connecting to MongoDB: ", error.message);
-        });
-    
+  // Connect to MongoDB
+  mongoose.connect(mongooseURI)
+    .then(() => {
+      console.log("Connected to MongoDB");
+    })
+    .catch((error) => {
+      console.error("Error connecting to MongoDB:", error);
+    });
 }
 
 module.exports = connectToMongo;
