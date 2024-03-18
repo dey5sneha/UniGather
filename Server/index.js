@@ -19,7 +19,7 @@ io.on('connection', (socket) => {
     //Handling the data from the client
     socket.on('join:call', (details)=>{
       console.log(details, socket.id);
-      
+      socket.emit('join:room', details);
     })
   
     // Handle disconnection
