@@ -2,7 +2,7 @@ const connectToMongo = require("./connections/db");
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
-const handleConnection = require('./connections/SocketConnection')
+const handleConnection = require('./connections/Socket')
 
 connectToMongo();
 const app = express();

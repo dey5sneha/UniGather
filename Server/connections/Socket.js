@@ -8,7 +8,7 @@ const handleConnection = (io)=> {
         // console.log('A user connected', socket.id);
         socket.emit('WelcomeMessage', "Welcome in the Meeting");
         socket.broadcast.emit('message', 'A user has joind');
-        //Request to join the room
+        //Request to join the room 
         socket.on('join:call', (details)=>{
           console.log(socket.handshake.query);
           const {name,email, code} = details;
@@ -19,6 +19,7 @@ const handleConnection = (io)=> {
             socketId: socket.id,
           });
           console.log(details, socket.id);
+          socket.join(code);
           //Allowing to join the room
           socket.emit('join:room', details);
         });
@@ -27,7 +28,7 @@ const handleConnection = (io)=> {
         socket.on('message', (data) => {
           checkAuthenticationAndData(socket, data, () => {
               // If authentication and data are valid, proceed with message handling
-              socket.broadcast.emit('message', data);
+              socket.broadcast.to(data.roomId).emit('message', data);
           });
         });
         // Handling disconnection

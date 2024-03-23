@@ -6,7 +6,7 @@ const LandingPage = () => {
     const [email, setEmail] = useState("");
     const [code, setCode] = useState("");
     const [name, setName] = useState("")
-    const { setUsername} = useContext(UserDataContext);
+    const { setUsername, setRoomId} = useContext(UserDataContext);
     const socket = useSocket();
     console.log(socket.id);
     const navigate = useNavigate();
@@ -26,6 +26,7 @@ const LandingPage = () => {
         e.preventDefault();
         const details = { name, email, code };
         setUsername(name);
+        setRoomId(code);
         socket.emit("join:call", details);
     };
 
@@ -63,7 +64,7 @@ const LandingPage = () => {
                     <input type="email" value={email} onChange={handleChangeEmail} id="email" required />
                 </div>
                 <div>
-                    <label htmlFor="id">Enter code</label>
+                    <label htmlFor="id">Enter RoomId</label>
                     <input type="text" value={code} onChange={handleChangeCode} id="code" />
                 </div>
                 <button type="submit">Submit</button>

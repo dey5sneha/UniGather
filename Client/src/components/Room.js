@@ -6,7 +6,7 @@ import UserDataContext from "../context/User";
 function Room() {
   const socket = useSocket();
   const [messages, setMessages] = useState([]);
-  const { userName } = useContext(UserDataContext);
+  const { userName, roomId } = useContext(UserDataContext);
   const navigate = useNavigate();
 
   //Handling conneciton error
@@ -19,7 +19,8 @@ function Room() {
   const handleSendMessage = (message) => {
     const data = {
       message : message,
-      username : userName
+      username : userName,
+      roomId : roomId
     }
 
     socket.emit('message', data);
