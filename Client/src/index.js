@@ -5,16 +5,17 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { SocketProvider } from './context/SocketContext';
-
+import { UserDataProvider  } from "./context/User";
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  //Removed strictmode due to twice rendering of use effect hook
     <BrowserRouter>
-      <SocketProvider>
-        <App />
-      </SocketProvider>
+      <UserDataProvider >
+        <SocketProvider>
+          <App />
+        </SocketProvider>
+      </UserDataProvider >
     </BrowserRouter> 
-  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

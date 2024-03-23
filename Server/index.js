@@ -2,6 +2,7 @@ const connectToMongo = require("./connections/db");
 const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
+const handleConnection = require('./connections/SocketConnection')
 
 connectToMongo();
 const app = express();
@@ -9,24 +10,11 @@ const server = http.createServer(app);
 const io = new Server(server, {
   cors: true,
 });
-const port = 8000;
+const port = 8000 || process.env.PORT;
 
 
 //Socket io Connection
-io.on('connection', (socket) => {
-    console.log('A user connected');
-  
-    //Handling the data from the client
-    socket.on('join:call', (details)=>{
-      console.log(details, socket.id);
-      socket.emit('join:room', details);
-    })
-  
-    // Handling disconnection
-    socket.on('disconnect', () => {
-      console.log('User disconnected');
-    });
-  });
+handleConnection(io);
   
 
   //Handling the https requests using express
