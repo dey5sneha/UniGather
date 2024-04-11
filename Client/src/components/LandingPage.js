@@ -85,10 +85,11 @@ useEffect(() => {
                                         <div>
                                             <button type="submit" className="btn btn-dark btn-sm px-3 " style={{ "marginTop": "40px", fontSize: "15px" }}>Ready to join</button>
                                         </div>
-                                        <div>
+                                        
+                                        {/* <div>
                                             <p className="mb-0 text-dark" style={{ "marginTop": "30px" }} >Don't have an account?
                                                 <a className=" fw-bold" href="/signup">Sign Up</a> </p>
-                                        </div>
+                                        </div> */}
                                     </form>
                                 </div>
                             </div>
